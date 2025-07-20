@@ -20,3 +20,17 @@ body {
 li {
   margin-bottom: 9px;
 }
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: #eee;  
+}
+header{
+  text-align: center;
+  
+}

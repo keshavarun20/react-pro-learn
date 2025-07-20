@@ -1,7 +1,11 @@
 import "./App.css";
+import { Footer } from "./Footer";
 function App() {
   return (
     <main>
+      <header>
+        <marquee>Welcome To The React Learning</marquee>
+      </header>
       <div className="header">
         <img
           className="react-logo"
@@ -17,6 +21,7 @@ function App() {
         <li>Is maintained by Meta</li>
         <li>Powers thousands of enterprise apps, including mobile apps</li>
       </ul>
+      <Footer />
     </main>
   );
 }
