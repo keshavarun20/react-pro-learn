@@ -1,42 +1,61 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  background-color: #282d35;
+  color: white;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header {
+  height: 90px;
+  background-color: #21222a;
+  padding: 30px 25px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.navbar {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  height: 100%;
 }
 
-.card {
-  padding: 2em;
+.navbar-logo {
+  width: 40px;
 }
 
-.read-the-docs {
-  color: #888;
+.navbar-text {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: rgb(97, 218, 251);
+}
+
+main {
+  padding: 60px 30px;
+  background-image: url("https://www.pngall.com/wp-content/uploads/15/React-Logo-PNG.png");
+  background-size: 250px;
+  background-repeat: no-repeat;
+  background-position: 1150px;
+  background-blend-mode:soft-light ;
+}
+
+.title {
+  margin: 0;
+  font-size: 2.4rem;
+}
+
+.facts-list {
+  margin-top: 46px;
+}
+
+.facts-list li {
+  padding-block: 10px;
+  line-height: 19px;
+}
+
+.facts-list li::marker {
+  color: rgb(97, 218, 251);
+  font-size: 1.5rem;
 }
