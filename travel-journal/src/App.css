@@ -81,4 +81,12 @@ article {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+main.container {
+  border-style: dashed;
+  border-width: 2px;
+  border-color: #f04d4d;
+  margin: 8px;
 }

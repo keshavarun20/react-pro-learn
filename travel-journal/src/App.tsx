@@ -6,9 +6,11 @@ const App = () => {
   return (
     <>
       <Header />
-      {data.map((item) => (
+      <main className="container">
+        {data.map((item) => (
         <Entry key={item.id} {...item} />
       ))}
+      </main>
     </>
   );
 };
