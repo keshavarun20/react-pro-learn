@@ -1,4 +1,16 @@
-export default [
+export type EntryData = {
+  id: number;
+  img: {
+    src: string;
+    alt: string;
+  };
+  title: string;
+  country: string;
+  googleMapsLink: string;
+  dates: string;
+  text: string;
+};
+const data: EntryData[] = [
     {
         id: 1,
         img: {
@@ -36,3 +48,5 @@ export default [
         text: "The Geiranger Fjord is a fjord in the Sunnmøre region of Møre og Romsdal county, Norway. It is located entirely in the Stranda Municipality."
     },
 ]
+
+export default data;
