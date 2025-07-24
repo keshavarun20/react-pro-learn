@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #efefe7;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 95px;
+  padding-bottom: 25px;
+  padding-top: 15px;
+  background-color: white;
+  box-shadow: 0px 1px 3px 0px rgb(0, 0, 0, 0.1),
+    0px 1px 2px 0px rgb(0, 0, 0, 0.06);
+}
+
+header img {
+  width: 50px;
+}
+
+header span {
+  font-size: 2rem;
+  font-weight: 450;
+}
+
+/* Input Section */
+
+.ingredient-section {
+  padding: 30px 30px 10px;
+}
+
+.ingredient-form {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  height: 38px;
+}
+
+.ingredient-input {
+  border-radius: 6px;
+  border: 1px solid #e7e6d7;
+  padding: 9px 13px;
+  box-shadow: 0px 1px 2px 0px rgb(0, 0, 0, 0.05);
+  flex-grow: 1;
+  min-width: 150px;
+  max-width: 400px;
+}
+
+.add-ingredient-button {
+  font-family: "Inter", sans-serif;
+  font-size: 0.87rem;
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  background-color: #141413;
+  color: #e7e6d7;
+  flex-grow: 1;
+  min-width: 100px;
+  max-width: 200px;
+}
