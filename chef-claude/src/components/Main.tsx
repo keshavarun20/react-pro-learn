@@ -1,11 +1,7 @@
 import { useState } from "react";
 
 const Main = () => {
-  const [ingredients, setIngredients] = useState([
-    "Chicken",
-    "Oregano",
-    "Tomatoes",
-  ]);
+  const [ingredients, setIngredients] = useState<string[]>([]);
 
   const [showPopUp, setShowPopUp] = useState(false);
 
