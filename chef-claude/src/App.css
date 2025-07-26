@@ -98,3 +98,17 @@ header span {
 .list {
   cursor: pointer;
 }
+
+@media (min-width: 1080px) {
+  .ingredients-list {
+    padding-left: 305px;
+  }
+}
+
+.ingredients-list ul {
+  margin-top: 30px;
+}
+.ingredients-list ul li {
+  color: #475467;
+  line-height: 28px;
+}

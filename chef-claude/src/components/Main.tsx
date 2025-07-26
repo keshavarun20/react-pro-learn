@@ -54,7 +54,16 @@ const Main = () => {
         return;
       }
 
-      setIngredients((prev) => [...prev, trimmed]);
+      const capitalized = (str: string) =>
+        str
+          .split(" ")
+          .map(
+            (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+          )
+          .join(" ");
+
+      const formatted = capitalized(trimmed);
+      setIngredients((prev) => [...prev, formatted]);
       console.log("Added:", trimmed);
     }
   };
@@ -78,7 +87,7 @@ const Main = () => {
         <button className="add-ingredient-button">+ Add Ingredient</button>
       </form>
       {ingredients.length > 0 && (
-        <section>
+        <section className="ingredients-list">
           <h2>Ingredients on hand:</h2>
           <ul>{list}</ul>
         </section>
