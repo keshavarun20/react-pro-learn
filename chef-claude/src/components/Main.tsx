@@ -17,9 +17,7 @@ const Main = () => {
     </li>
   ));
 
-  const addIngredients = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+  const addIngredients = (formData: FormData) => {
     const newIngredient = formData.get("ingredient");
 
     if (typeof newIngredient === "string") {
@@ -32,7 +30,7 @@ const Main = () => {
         setTimeout(() => {
           setShowPopUp((prev) => !prev);
           setErrorMessage("");
-        }, 3000);
+        }, 2000);
         return;
       }
 
@@ -42,7 +40,7 @@ const Main = () => {
         setTimeout(() => {
           setShowPopUp((prev) => !prev);
           setErrorMessage("");
-        }, 3000);
+        }, 2000);
         return;
       }
 
@@ -52,13 +50,12 @@ const Main = () => {
         setTimeout(() => {
           setShowPopUp((prev) => !prev);
           setErrorMessage("");
-        }, 3000);
+        }, 2000);
         return;
       }
 
       setIngredients((prev) => [...prev, trimmed]);
       console.log("Added:", trimmed);
-      event.currentTarget.reset();
     }
   };
 
@@ -70,7 +67,7 @@ const Main = () => {
 
   return (
     <main className="ingredient-section">
-      <form onSubmit={addIngredients} className="ingredient-form">
+      <form action={addIngredients} className="ingredient-form">
         <input
           className="ingredient-input"
           aria-label="Add Ingredient"
