@@ -77,7 +77,12 @@ const Main = () => {
         />
         <button className="add-ingredient-button">+ Add Ingredient</button>
       </form>
-      <ul>{list}</ul>
+      {ingredients.length > 0 && (
+        <section>
+          <h2>Ingredients on hand:</h2>
+          <ul>{list}</ul>
+        </section>
+      )}
       {showPopUp && (
         <div className={`pop-up ${showPopUp ? "show" : ""}`}>
           {errorMessage}
