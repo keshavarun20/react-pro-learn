@@ -177,4 +177,15 @@ header span {
   max-width: 650px;
 }
 
+.suggested-recipe-container {
+    color: #303a4a;
+    line-height: 28px;
+    font-size: 1.125rem;
+    font-weight: 400;
+}
+
+.suggested-recipe-container ul li, .suggested-recipe-container ol li {
+    margin-bottom: 8px;
+}
+
 

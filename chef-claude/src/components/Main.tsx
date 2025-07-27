@@ -98,11 +98,7 @@ const Main = () => {
           name="ingredient"
         />
         <button className="add-ingredient-button">+ Add Ingredient</button>
-        <button
-          type="button"
-          className="reset-button"
-          onClick={() => handleReset()}
-        >
+        <button type="button" className="reset-button" onClick={handleReset}>
           ⟳
         </button>
       </form>
