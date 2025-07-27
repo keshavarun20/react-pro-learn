@@ -86,12 +86,23 @@ const Main = () => {
         />
         <button className="add-ingredient-button">+ Add Ingredient</button>
       </form>
-      {ingredients.length > 0 && (
-        <section className="ingredients-list">
-          <h2>Ingredients on hand:</h2>
-          <ul>{list}</ul>
-        </section>
-      )}
+      <div className="fixed-container">
+        <div className="inner-ingredients">
+          {ingredients.length > 0 && (
+            <section className="ingredients-list">
+              <h2>Ingredients on hand:</h2>
+              <ul>{list}</ul>
+              <div className="recipe-container">
+                <div>
+                  <h3>Ready for a Recipe?</h3>
+                  <p>Generate a recipe from your list if ingredients</p>
+                </div>
+                <button>Get a Recipe</button>
+              </div>
+            </section>
+          )}
+        </div>
+      </div>
       {showPopUp && (
         <div className={`pop-up ${showPopUp ? "show" : ""}`}>
           {errorMessage}
