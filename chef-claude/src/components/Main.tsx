@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Recipe from "./Recipe";
 import IngredientsList from "./IngredientsList";
+import { getRecipeFromMistral } from "../../ai";
 
 const Main = () => {
   const [ingredients, setIngredients] = useState<string[]>([]);
@@ -9,7 +10,7 @@ const Main = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  const [recipeShown, setRecipeShown] = useState(false);
+  const [recipe, setRecipe] = useState<string | undefined>("");
 
   const list = ingredients.map((ingredient) => (
     <li
@@ -78,15 +79,17 @@ const Main = () => {
     );
   };
 
-  const generateRecipe = () => {
-    setRecipeShown((prev) => !prev);
+  const generateRecipe = async () => {
+    const recipeMarkDown = await getRecipeFromMistral(ingredients);
+    setRecipe(recipeMarkDown);
+    console.log(recipeMarkDown);
   };
 
   const handleReset = () => {
     setIngredients([]);
     setErrorMessage("");
     setShowPopUp(false);
-    setRecipeShown(false);
+    setRecipe("");
   };
 
   return (
@@ -113,7 +116,7 @@ const Main = () => {
               generateRecipe={generateRecipe}
             />
           )}
-          {recipeShown && <Recipe />}
+          {recipe && <Recipe recipe={recipe} />}
         </div>
       </div>
       {showPopUp && (

@@ -1,9 +1,9 @@
-const Recipe = () => {
+const Recipe = (props:any) => {
   return (
     <section>
       <h2>Chef Claude Recommends:</h2>
       <article className="suggested-recipe-container" aria-live="polite">
-        <p>
+        {/* <p>
           Based on the ingredients you have available, I would recommend making
           a simple a delicious <strong>Beef Bolognese Pasta</strong>. Here is
           the recipe:
@@ -56,7 +56,9 @@ const Recipe = () => {
             Serve hot, garnished with additional fresh basil or grated Parmesan
             cheese if desired.
           </li>
-        </ol>
+        </ol> */}
+
+        {props.recipe}
       </article>
     </section>
   );
