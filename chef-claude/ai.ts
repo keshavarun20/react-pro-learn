@@ -19,11 +19,15 @@ if (!accessToken) {
 // Initialize the client only if the token is available
 const hf = accessToken ? new InferenceClient(accessToken) : null;
 
-export async function getRecipeFromMistral(ingredientsArr: string[]): Promise<string | undefined> {
+export async function getRecipeFromMistral(
+  ingredientsArr: string[]
+): Promise<string | undefined> {
   // Ensure the client was successfully initialized
   if (!hf) {
-    console.error("Hugging Face InferenceClient not initialized. Missing access token.");
-    return undefined;
+    const msg =
+      "Hugging Face InferenceClient not initialized. Missing access token.";
+    console.error(msg);
+    throw new Error(msg);
   }
 
   const ingredientsString = ingredientsArr.join(", ");
@@ -46,9 +50,10 @@ export async function getRecipeFromMistral(ingredientsArr: string[]): Promise<st
   } catch (err) {
     if (err instanceof Error) {
       console.error("Error generating recipe:", err.message);
-      // You might also return a user-friendly error message here
+      throw new Error(err.message); // ❗rethrow so caller can handle it
     } else {
       console.error("Unexpected error during recipe generation:", err);
+      throw new Error("An unknown error occurred while generating the recipe."); // generic error
     }
   }
   return undefined;

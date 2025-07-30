@@ -69,7 +69,6 @@ const Main = () => {
 
       const formatted = capitalized(trimmed);
       setIngredients((prev) => [...prev, formatted]);
-      console.log("Added:", trimmed);
     }
   };
 
@@ -80,9 +79,24 @@ const Main = () => {
   };
 
   const generateRecipe = async () => {
-    const recipeMarkDown = await getRecipeFromMistral(ingredients);
-    setRecipe(recipeMarkDown);
-    console.log(recipeMarkDown);
+    try {
+      const recipeMarkDown = await getRecipeFromMistral(ingredients);
+      setRecipe(recipeMarkDown);
+    } catch (err) {
+      let message = "Something went wrong.";
+
+      if (err instanceof Error) {
+        message = err.message;
+      }
+
+      setErrorMessage(message);
+      setShowPopUp(true);
+
+      setTimeout(() => {
+        setShowPopUp(false);
+        setErrorMessage("");
+      }, 2000);
+    }
   };
 
   const handleReset = () => {
