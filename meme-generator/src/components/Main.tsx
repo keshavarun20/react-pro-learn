@@ -4,6 +4,16 @@ type meme = {
   topText: string;
   bottomText: string;
 };
+type MemeFromAPI = {
+  box_count: number;
+  captions: number;
+  height: number;
+  id: string;
+  name: string;
+  url: string;
+  width: number;
+};
+
 const Main = () => {
   const [meme, setMeme] = useState<meme>({
     img: "http://i.imgflip.com/1bij.jpg",
@@ -11,7 +21,7 @@ const Main = () => {
     bottomText: "Walk into Mordor",
   });
 
-  const [allMemes, setAllMemes] = useState([]);
+  const [allMemes, setAllMemes] = useState<MemeFromAPI[]>([]);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.currentTarget;
     setMeme((prev) => ({
@@ -19,17 +29,25 @@ const Main = () => {
       [name]: value,
     }));
   };
-  
 
   useEffect(() => {
     const getMemes = async () => {
       const response = await fetch("https://api.imgflip.com/get_memes");
       const data = await response.json();
+      console.log(data.data.memes);
       setAllMemes(data.data.memes);
     };
 
     getMemes();
-  }, [meme]);
+  }, []);
+
+ const randomMemeImage = ()=>{
+  const randomImage = allMemes[Math.floor(Math.random()*allMemes.length)]
+  setMeme(prevMeme =>({
+    ...prevMeme,
+    img:randomImage.url
+  }))
+ }
 
   return (
     <main>
@@ -53,7 +71,7 @@ const Main = () => {
             onChange={handleChange}
           />
         </label>
-        <button>Get a new meme image 🖼</button>
+        <button onClick={randomMemeImage}>Get a new meme image 🖼</button>
       </div>
       <div className="meme">
         <img src={meme.img} alt="Meme Image" />
