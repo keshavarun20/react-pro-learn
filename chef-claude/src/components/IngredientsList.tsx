@@ -2,15 +2,16 @@ type IngredientsListProps = {
   ingredients: string[];
   list: React.ReactNode; // this is JSX you're rendering inside <ul>
   generateRecipe: () => void;
+  ref:any
 };
-export default function IngredientsList({ ingredients, list, generateRecipe }:IngredientsListProps) {
+export default function IngredientsList({ ingredients, list, generateRecipe,ref }:IngredientsListProps) {
   return (
     <section className="ingredients-list">
       <h2>Ingredients on hand:</h2>
       <ul>{list}</ul>
       {ingredients.length > 3 && (
         <div className="recipe-container">
-          <div>
+          <div ref={ref}>
             <h3>Ready for a Recipe?</h3>
             <p>Generate a recipe from your list of ingredients</p>
           </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Recipe from "./Recipe";
 import IngredientsList from "./IngredientsList";
 import { getRecipeFromMistral } from "../../ai";
@@ -11,6 +11,10 @@ const Main = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [recipe, setRecipe] = useState<string | undefined>("");
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const recipeSection = useRef<HTMLDivElement | null>(null);
 
   const list = ingredients.map((ingredient) => (
     <li
@@ -79,6 +83,7 @@ const Main = () => {
   };
 
   const generateRecipe = async () => {
+    setIsLoading(true);
     try {
       const recipeMarkDown = await getRecipeFromMistral(ingredients);
       setRecipe(recipeMarkDown);
@@ -96,6 +101,8 @@ const Main = () => {
         setShowPopUp(false);
         setErrorMessage("");
       }, 2000);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -105,6 +112,15 @@ const Main = () => {
     setShowPopUp(false);
     setRecipe("");
   };
+
+  useEffect(() => {
+    if (recipeSection.current && recipe) {
+      recipeSection.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [recipe]);
 
   return (
     <main className="ingredient-section">
@@ -128,9 +144,63 @@ const Main = () => {
               ingredients={ingredients}
               list={list}
               generateRecipe={generateRecipe}
+              ref={recipeSection}
             />
           )}
-          {recipe && <Recipe recipe={recipe} />}
+          {isLoading ? (
+            <div className="loader-container" ref={recipeSection}>
+              <svg viewBox="0 0 240 240" width="100" height="100">
+                <circle
+                  className="pl1123__ring pl1123__ring--a"
+                  cx="120"
+                  cy="120"
+                  r="105"
+                  fill="none"
+                  stroke="#d17557"
+                  strokeWidth="20"
+                  strokeDasharray="0 660"
+                  strokeDashoffset="-330"
+                  strokeLinecap="round"
+                />
+                <circle
+                  className="pl1123__ring pl1123__ring--b"
+                  cx="120"
+                  cy="120"
+                  r="35"
+                  fill="none"
+                  stroke="#d17557"
+                  strokeWidth="20"
+                  strokeDasharray="0 220"
+                  strokeDashoffset="-110"
+                  strokeLinecap="round"
+                />
+                <circle
+                  className="pl1123__ring pl1123__ring--c"
+                  cx="85"
+                  cy="120"
+                  r="70"
+                  fill="none"
+                  stroke="#d17557"
+                  strokeWidth="20"
+                  strokeDasharray="0 440"
+                  strokeLinecap="round"
+                />
+                <circle
+                  className="pl1123__ring pl1123__ring--d"
+                  cx="155"
+                  cy="120"
+                  r="70"
+                  fill="none"
+                  stroke="#d17557"
+                  strokeWidth="20"
+                  strokeDasharray="0 440"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+          ) : (
+            recipe && <Recipe recipe={recipe} />
+          )}
         </div>
       </div>
       {showPopUp && (
